@@ -1,0 +1,93 @@
+
+<section class="grid grid-cols-1 md:grid-cols-2 gap-3"><!-- grid-cols-1 (pantallas pequeñas) -->
+                                                       <!-- md:grid-cols-2 (pantallas medianas) -->
+  <!-- ngIf or @if -->
+  <div class="bg-white rounded shadow p-10">
+
+    <h2 class="text-2xl font-bold mb-5">if: {{ showContent()  }}</h2>
+
+    <button
+    class="p-2 bg-blue-500 rounded text-white transform active:scale-95 transition-transform"
+    (click)="toggleContent()">
+      CLick me!
+    </button>
+
+    @if ( showContent()) {
+      <h2>Hola Mundo</h2>
+    }@else {
+      <h2>*********</h2>
+    }
+
+  </div>
+
+    <!-- @switch -->
+    <div class="bg-white rounded shadow p-10">
+
+      <h2 class="text-3xl"> {{ grade() }} </h2>
+
+      @switch (grade()) {
+        @case ('A') {
+          <p>Arriba de 90</p>
+        }
+        @case ('B') {
+          <p>Arriba de 80</p>
+        }
+        <!-- @case ('F') {
+          <p>Reprobado</p>
+        } -->
+        @default {
+          <p>Reprobado</p>
+        }
+      }
+
+    </div>
+
+    <!-- @for -->
+     <!-- con track del $index -->
+    <div class="bg-white rounded shadow p-10">
+      <ul>
+      @for (framework of frameworks(); track $index) {
+        <li> {{ framework }} </li>
+      }
+    </ul>
+
+    <!-- con track del arr frameworks -->
+    </div>
+    <div class="bg-white rounded shadow p-10">
+      <ul>
+        <!-- se puede usar el frameworks como track siempre y cuando sea unico y no haya duplicados, Ej: que no haya 2 veces Angular u otro framework duplicado-->
+      @for (framework of frameworks(); track framework;
+      let i = $index, first = $first, last = $last, even = $even, odd = $odd, count = $count) {
+        <li [class]="{
+          'bg-red-100': even && !first && !last,
+          'bg-purple-100': odd && !first && !last,
+          'bg-blue-100': first || last,
+        }">
+          {{ i +1 }}/{{ count }} - {{ framework }}
+        </li>
+      }
+    </ul>
+
+    </div>
+
+    <!-- con un arr vacio y uso de @empty -->
+    <div class="bg-white rounded shadow p-10">
+
+      <ul>
+        @for (framework of frameworks2(); track $index) {
+          <li> {{ framework }} </li>
+        }@empty {<!-- muestra este mensaje si el arr esta vacio, si el arr tiene al menos un valor muestra el arr - es como un if -->
+          <li>No hay frameworks agregados</li>
+        }
+      </ul>
+
+    </div>
+
+</section>
+
+
+
+
+
+
+
