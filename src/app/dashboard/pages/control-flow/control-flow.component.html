@@ -56,6 +56,12 @@
     <div class="bg-white rounded shadow p-10">
       <ul>
         <!-- se puede usar el frameworks como track siempre y cuando sea unico y no haya duplicados, Ej: que no haya 2 veces Angular u otro framework duplicado-->
+        <!-- $index = indice del elemento iterado -->
+        <!-- $first = el primer elemento -->
+        <!-- $last = el ultimo elemento -->
+        <!-- $even = los elementos pares -->
+        <!-- $odd = los elementos impares -->
+        <!-- $count = el numero total de elementos -->
       @for (framework of frameworks(); track framework;
       let i = $index, first = $first, last = $last, even = $even, odd = $odd, count = $count) {
         <li [class]="{
