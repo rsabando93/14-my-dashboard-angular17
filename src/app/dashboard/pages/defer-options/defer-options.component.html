@@ -1,1 +1,105 @@
-<p>defer-options works!</p>
+<app-title title="Defer Trigger"></app-title>
+
+<section>
+  <h1 class="text-xl">interaction</h1>
+
+  <hr class="my-2"> <!-- my-2 = margen en y de 2px-->
+
+  @defer ( on interaction ) { <!-- Se carga solo cuando se interactua con este elemento(click, touch, tap, etc) -->
+    <app-heavy-loaders-fast cssClass="bg-blue-500 h-20" >
+      <span>On Interaction</span> <!-- ngcontent del heavy-loaders-fast -->
+    </app-heavy-loaders-fast>
+  }@placeholder {
+    <div class="w-full h-20 bg-purple-100">
+      Click en el div
+    </div>
+  }
+
+</section>
+
+<section>
+  <h1 class="text-xl">on interaction(btnInteraction)</h1>
+
+  <hr class="my-2"> <!-- my-2 = margen en y de 2px-->
+
+  <button
+  #btnInteraction
+  class="p-2 bg-blue-500 hover:bg-blue-700 transition-all rounded text-white my-2">
+    Click me!
+  </button>
+  <!-- se carga cuando se interactuá con el boton #btnInteraction -->
+  @defer ( on interaction(btnInteraction) ) { <!-- Se carga cuando se interactuá con el elemento vinculado (#btnInteraction) -->
+    <app-heavy-loaders-fast cssClass="bg-blue-500 h-20" >
+      <span>On interaction(btnInteraction) </span> <!-- ngcontent del heavy-loaders-fast -->
+    </app-heavy-loaders-fast>
+  }@placeholder {
+    <div class="w-full h-20 bg-purple-100">
+      Placeholder div
+    </div>
+  }
+
+</section>
+
+<section>
+  <h1 class="text-xl">on hover(btnInteraction)</h1>
+  <hr class="my-2"> <!-- my-2 = margen en y de 2px-->
+
+  @defer ( on hover(btnInteraction) ) { <!-- se carga cuando se hace hover sobre el elemento btnInteraction -->
+    <app-heavy-loaders-fast cssClass="bg-blue-500 h-20" >
+      <span>On hover(btnInteraction) </span> <!-- ngcontent del heavy-loaders-fast -->
+    </app-heavy-loaders-fast>
+  }@placeholder {
+    <div class="w-full h-20 bg-purple-100">
+      Placeholder div
+    </div>
+  }
+
+</section>
+
+<section>
+  <h1 class="text-xl">on immediate</h1>
+  <hr class="my-2"> <!-- my-2 = margen en y de 2px-->
+
+  @defer ( on immediate ) { <!-- Se carga inmediatamente cuando se carga la pagina -->
+    <app-heavy-loaders-fast cssClass="bg-blue-500 h-20" >
+      <span>On immediate</span> <!-- ngcontent del heavy-loaders-fast -->
+    </app-heavy-loaders-fast>
+  }@placeholder {
+    <div class="w-full h-20 bg-purple-100">
+      Placeholder div
+    </div>
+  }
+
+</section>
+
+<section>
+  <h1 class="text-xl">on timer</h1>
+  <hr class="my-2"> <!-- my-2 = margen en y de 2px-->
+
+  @defer ( on timer( 2000 ) ) { <!-- se carga despues de 2 segundos-->
+    <app-heavy-loaders-fast cssClass="bg-green-500 h-20" >
+      <span>On timer</span> <!-- ngcontent del heavy-loaders-fast -->
+    </app-heavy-loaders-fast>
+  }@placeholder {
+    <div class="w-full h-20 bg-purple-100">
+      2 segundos
+    </div>
+  }
+
+</section>
+
+<section>
+  <h1 class="text-xl">on timer</h1>
+  <hr class="my-2"> <!-- my-2 = margen en y de 2px-->
+  <!--prefetch prepara el codigo js pero no construye el componente hasta que se haga el hover - util si el componente es muy pesado o tiene mucho codigo o son componentes que tienen otros componentes( un defer dentro de otro componente con un defer)  -->
+  @defer ( on hover; prefetch on idle ) {
+    <app-heavy-loaders-fast cssClass="bg-green-500 h-20" >
+      <span>On hover, idle</span> <!-- ngcontent del heavy-loaders-fast -->
+    </app-heavy-loaders-fast>
+  }@placeholder {
+    <div class="w-full h-20 bg-purple-100">
+      hover
+    </div>
+  }
+
+</section>

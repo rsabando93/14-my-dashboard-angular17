@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, booleanAttribute } from '@angular/core';
 
 @Component({
   selector: 'app-title',
@@ -8,5 +8,9 @@ import { Component } from '@angular/core';
   styles: ``
 })
 export class TitleComponent {
+
+  @Input( { required: true } ) //el title es obigatorio
+  public title: string = 'No title';
+  @Input( { transform: booleanAttribute } ) withShadow: boolean = false; //transform permite transformar los inputs en otro tipo de atributo - En este caso transforma el string en un boolean
 
 }
